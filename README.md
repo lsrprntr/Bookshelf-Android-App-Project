@@ -10,5 +10,5 @@ Unit 5 Project Jetpack Compose Course
 Currently it only requests the search terms: "Jazz History"; but the requirements did not specify any user input to change the request to be added.
 
 
-|![image](https://github.com/lsrprntr/Bookshelf-Android-App-Project/assets/39038103/fdc933aa-784f-474f-b7b7-03f8c41d9812)|![image](https://github.com/lsrprntr/Bookshelf-Android-App-Project/assets/39038103/4607ebdc-9b07-4aec-bb74-bbeac9c31a33)|
+|![image](https://github.com/lsrprntr/Bookshelf-Android-App-Project/assets/39038103/fdc933aa-784f-474f-b7b7-03f8c41d9812)|![image](https://github.com/lsrprntr/Bookshelf-Android-App-Project/assets/39038103/53dcb07d-d0a9-4a7a-8943-18220143bd32)|
 |---|---|
