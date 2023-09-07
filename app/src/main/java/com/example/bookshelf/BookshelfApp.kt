@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookshelf.ui.BookshelfViewModel
 import com.example.bookshelf.ui.HomeScreen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookshelfApp(modifier: Modifier = Modifier) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
