@@ -2,6 +2,11 @@
 
 package com.example.bookshelf.ui
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,8 +28,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -83,8 +90,19 @@ fun ErrorScreen(modifier: Modifier, msg: String, retryAction: () -> Unit) {
 
 @Composable
 fun LoadingScreen(modifier: Modifier) {
+    val infiniteTransition = rememberInfiniteTransition()
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0F,
+        targetValue = 360F,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing)
+        ), label = ""
+    )
     Image(
-        modifier = modifier.size(200.dp),
+        modifier = modifier.size(200.dp)
+            .graphicsLayer {
+            rotationZ = angle
+        },
         painter = painterResource(R.drawable.loading_img),
         contentDescription = stringResource(R.string.loading)
     )
@@ -99,7 +117,6 @@ fun ResultScreen(
         contentAlignment = Alignment.Center,
         modifier = modifier
     ) {
-        val book = bookList.list[0].volumeInfo
         val books = bookList.list
         val newBooks =
             books.map { Book(title = it.volumeInfo.title, imageLinks = it.volumeInfo.imageLinks, ) }
@@ -143,6 +160,7 @@ fun PhotoCard(book: Book, modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.Start
         ) {
             Row {
+
                 AsyncImage(
                     model = ImageRequest.Builder(context = LocalContext.current)
                         .data(imgSrc)
@@ -179,7 +197,7 @@ fun PhotoCard(book: Book, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun testCard() {
+fun TestCard() {
     PhotoCard(
         book = Book(
             title = "The Title",
